@@ -1,0 +1,21 @@
+- Let's put pricing everywhere!
+  - Showing different 'slices' of what we call pricing intel on lots of pages, but each component controlled it's own state. Having a graph and different pricing tiles on a page, all of which utilize pricing intel data, requires duplicative calls to pricing and inefficient component rendering.
+- Do we REALLY need context?
+  - very, very quick overview of context because y'all probs have a baseline understanding of what it do
+  - Abstracted logic to handle fetching, parsing and managing pricing intel state initially implemented via a hook (usePricingIntel).
+  - This was ok, but then we introduced multiple disparate components on pages that shared the same inputs (stops, equipment type) and needed to re-render when those inputs change. usePricingIntel hook, which managed fetching and parsing data from pricing endpoints, would have to return data to each component separately and make separate requests.
+  - This was the brightline for using a context consumer and provider with pricing intel. You may opt for refactoring components to make them more compositional, which is outlined here https://kentcdodds.com/blog/application-state-management-with-react and https://www.youtube.com/watch?v=3XaXKiXtNjw&amp%3Bab_channel=ReactLoop
+  - Note that the context does not supplant the hook; it allows us to only do fetching via the hook one time for each context and consume that efficiently without excessive re-renders of children.
+- Wut it dew
+  - Where is the context provider? Placed witin container component, explain how that's a little different from redux store which we are all familiar with
+  - Context provider wraps the components that consume pricing context. Intermediate components, if there are any (show example) don't have to re-render when value changes, and consumers only re-render if the children prop does not share referential equality with previous children prop. Basically, value prop change only re-renders context consumers- C00L https://frontarm.com/james-k-nelson/react-context-performance/#to-render-or-not-to-render
+  - Context consumers use useContext hook- easy peasy! https://reactjs.org/docs/hooks-reference.html#usecontext
+  - N.B. could be problematic with multiple context providers in a given container (different from redux store), have not run into that issue with other context providers in app.
+- Benefits to context usage
+  - I don't have any data as far as reducing component renders or number of requests to external APIs. If anyone has a way to quantitatively measure this, I'm all ears and it would help this case study (and possibly future ones)! HOWEVER
+  - Lots of components using pricing intel on shipment details, new quote, new shipment- exactly one of each pricing request fires off when inputs change
+  - Dropped embedded pricing into new shipment (didn't previously have pricing intel at all) in minutes, previously this was a somewhat onerous task
+  - Could easily extend this modular approach to any page in the app with ease
+- Challenges that have come up so far
+  - Context value and component state are not always isomorphic- e.g., graph state v data state and how I had to break that out. Demo that
+  - Request from product to move embedded pricing from financials to the bids after context architecture was already in place. Demo that and challenges it uncovered
