@@ -1,0 +1,23 @@
+{
+  "name": "context-lunch-and-learn",
+  "version": "1.0.0",
+  "description": "This is a slideshow for a context lunch and learn",
+  "main": "index.js",
+  "dependencies": {
+    "mdx-deck": "^4.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "mdx-deck deck.mdx"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jctobey/context-lunch-and-learn.git"
+  },
+  "author": "James Tobey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jctobey/context-lunch-and-learn/issues"
+  },
+  "homepage": "https://github.com/jctobey/context-lunch-and-learn#readme"
+}
