@@ -1,9 +1,123 @@
-# Hello
+import deckTheme from "./theme";
+
+export const theme = deckTheme;
+
+<Steps>
+
+## React Context Through the Lens of Pricing Intel :mag_right:
+
+### We like that feature- let's put it _everywhere_
+
+</Steps>
 
 ---
 
-## This is my deck
+### I don't do the pricing intel- why do I care?
 
 ---
 
-## The End
+import lookAtThisGraph from "./images/look-at-this-graph.png";
+
+### Challenge
+
+<Steps>
+
+- Call pricing endpoints once for each page
+
+- Only re-render the components that care about pricing
+
+</Steps>
+
+<img
+  src={lookAtThisGraph}
+  alt="Graph"
+  style={{ height: "1200px", width: "1200px" }}
+/>
+
+---
+
+### Pricing Iterations
+
+<Steps>
+
+- Lifted up state to PricingIntelChartContent :x:
+
+- Abstracted logic to handle fetching, parsing and managing pricing intel to a hook :warning:
+
+- Wrapped page containers in context provider/consumer :trophy:
+
+</Steps>
+
+---
+
+# Show us the effing code!
+
+---
+
+### in React-speak, super dope
+
+<Steps>
+
+- Provider's value prop change only re-renders context consumers
+
+- Context consumers use useContext hook :muscle:
+
+</Steps>
+
+---
+
+### Tangible Developer and Application Benefits
+
+<Steps>
+
+- Exactly one of each pricing request fires off per page when inputs change
+
+- Dropped embedded pricing into new shipment in 15 minutes
+
+</Steps>
+
+---
+
+### Challenges I've Encountered
+
+<Steps>
+
+- Context value and component state are not always isomorphic
+
+- Moving Embedded Pricing from Financials to Bids on Shipment Details
+
+- **Hypothetical**: What if there were multiple providers in Shipment Details container?
+
+</Steps>
+
+---
+
+### Context is not a panacea
+
+<Steps>
+
+- Refactor your components to make them more compositional
+
+- Abstract complex component logic to a hook
+
+</Steps>
+
+---
+
+### Resources
+
+- Application state management with React
+
+  https://kentcdodds.com/blog/application-state-management-with-react
+
+- Using composition to avoid prop drilling
+
+  https://www.youtube.com/watch?v=3XaXKiXtNjw&amp%3Bab_channel=ReactLoop
+
+- Avoiding unnecessary renders with React Context
+
+  https://frontarm.com/james-k-nelson/react-context-performance/#to-render-or-not-to-render
+
+- UseContext React docs
+
+  https://reactjs.org/docs/hooks-reference.html#usecontext
