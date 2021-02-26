@@ -1,1 +1,15 @@
 # context-lunch-and-learn
+
+## Presentation
+
+Start the presentation:
+
+```
+npm start
+```
+
+The slides should open in Chrome. ← and → to navigate the slides.
+
+Built using [mdx-deck][].
+
+[mdx-deck]: https://github.com/jxnblk/mdx-deck
